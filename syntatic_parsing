@@ -1,0 +1,39 @@
+import re
+
+def synthetic_parse(text):
+    """
+    Performs synthetic parsing on the given text.
+    
+    Args:
+        text (str): The text to be parsed.
+        
+    Returns:
+        dict: A dictionary containing the parsed elements.
+    """
+    # Define the regular expression patterns for the parsing
+    pattern_subject = r'Subject:\s*(\w+)'
+    pattern_verb = r'Verb:\s*(\w+)'
+    pattern_object = r'Object:\s*(\w+)'
+    
+    # Use the patterns to extract the elements from the text
+    subject = re.search(pattern_subject, text).group(1)
+    # print('Subject',subject)
+    verb = re.search(pattern_verb, text).group(1)
+    # print('Verb',verb)
+    object = re.search(pattern_object, text).group(1)
+    # print('object',object)
+
+    
+    # Construct the parsed dictionary
+    parsed_data = {
+        'subject': subject,
+        'verb': verb,
+        'object': object
+    }
+    
+    return parsed_data
+
+# Example usage
+text = "Subject: John Verb: ran Object: marathon"
+parsed_data = synthetic_parse(text)
+print(parsed_data)
